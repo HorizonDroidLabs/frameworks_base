@@ -60,14 +60,7 @@
     <!-- Whether usage of the proximity sensor during doze is supported -->
     <bool name="doze_proximity_sensor_supported">true</bool>
 
-    <!-- Whether to play turbulence noise after clicking the play button -->
-    <bool name="config_turbulenceNoise">true</bool>
-
-    <!-- Whether to briefly keep the display in ON state when transitioning from
-         DOZE_AOD_PAUSED to DOZE_AOD state. -->
-    <bool name="config_displayTurnsOnWhenResumingAod">false</bool>
-
-     <!-- Notification counter -->
-    <integer name="status_bar_notification_info_maxnum">999</integer>
+    <!-- If not zero, limits the internal screen recorder's framerate to the set value. -->
+    <integer name="config_screenRecorderMaxFramerate">0</integer>
 
 </resources>
