@@ -67,6 +67,7 @@ public class QSFooterView extends FrameLayout {
     private boolean mExpanded;
     private float mExpansionAmount;
 
+    private boolean mShouldShowDataUsage;
     private boolean mShouldShowUsageText;
     private boolean mShouldShowSuffix;
 
@@ -97,8 +98,7 @@ public class QSFooterView extends FrameLayout {
 
         updateResources();
         setImportantForAccessibility(IMPORTANT_FOR_ACCESSIBILITY_YES);
-
-        //setBuildText();
+        setClickable(false);
         setUsageText();
 
         mUsageText.setOnClickListener(v -> {
@@ -116,7 +116,7 @@ public class QSFooterView extends FrameLayout {
     }
 
     private void setUsageText() {
-        if (mUsageText == null || !mExpanded) return;
+        if (mUsageText == null || !mShouldShowDataUsage || !mExpanded) return;
         DataUsageController.DataUsageInfo info;
         String suffix;
         if (mIsWifiConnected) {
@@ -217,6 +217,13 @@ public class QSFooterView extends FrameLayout {
         }
     }
 
+    protected void setShowDataUsage(boolean show) {
+        if (mShouldShowDataUsage != show) {
+            mShouldShowDataUsage = show;
+            updateVisibilities();
+        }
+    }
+
     @Override
     protected void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
@@ -286,7 +293,7 @@ public class QSFooterView extends FrameLayout {
             mFooterAnimator.setPosition(headerExpansionFraction);
         }
 
-        if (mUsageText == null) return;
+        if (mUsageText == null || !mShouldShowDataUsage) return;
         if (headerExpansionFraction == 1.0f) {
             postDelayed(() -> mUsageText.setSelected(true), 1000);
         } else if (headerExpansionFraction == 0.0f) {
@@ -308,11 +315,11 @@ public class QSFooterView extends FrameLayout {
         post(() -> {
             updateVisibilities();
             setUsageText();
-            setClickable(false);
         });
     }
 
     private void updateVisibilities() {
-        mUsageText.setVisibility(mExpanded && mShouldShowUsageText ? View.VISIBLE : View.INVISIBLE);
+        mUsageText.setVisibility(mShouldShowDataUsage && mExpanded && mShouldShowUsageText
+                ? View.VISIBLE : View.INVISIBLE);
     }
 }
