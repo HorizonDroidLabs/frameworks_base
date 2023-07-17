@@ -6574,8 +6574,6 @@ public final class Settings {
         public static final String LIVE_DISPLAY_HINTED = "live_display_hinted";
 
         /**
-         * Enable statusbar double tap gesture on to put device to sleep
-         * 0 = 0ff, 1 = on
          * @hide
          */
         public static final String DOUBLE_TAP_SLEEP_GESTURE = "double_tap_sleep_gesture";
@@ -6751,6 +6749,12 @@ public final class Settings {
          * @hide
          */
         public static final String LOCK_GESTURE_STATUS = "lock_gesture_status";
+
+        /**
+         * Settings Dashboard Style
+         * @hide
+         */
+        public static final String SETTINGS_DASHBOARD_STYLE = "settings_dashboard_style";
 
         /**
          * These are all public system settings
