@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 Paranoid Android
+ * Copyright (C) 2022-2024 Paranoid Android
  *           (C) 2023 ArrowOS
  *           (C) 2023 The LibreMobileOS Foundation
  *
@@ -52,7 +52,14 @@ public class PropImitationHooks {
     private static final boolean DEBUG = false;
     private static final String PIH_SERVICE_NAME = "pih_manager";
 
+    private static final Boolean sDisableGmsProps = SystemProperties.getBoolean(
+            "persist.sys.pihooks.disable.gms_props", false);
+
+    public static final Boolean sDisableKeyAttestationBlock = SystemProperties.getBoolean(
+            "persist.sys.pihooks.disable.gms_key_attestation_block", false);
+
     private static final String PACKAGE_AIWALLPAPERS = "com.google.android.apps.aiwallpapers";
+
     private static final String PACKAGE_ARCORE = "com.google.ar.core";
     private static final String PACKAGE_ASI = "com.google.android.as";
     private static final String PACKAGE_ASSISTANT = "com.google.android.apps.googleassistant";
@@ -87,12 +94,6 @@ public class PropImitationHooks {
 
     private static final ComponentName GMS_ADD_ACCOUNT_ACTIVITY = ComponentName.unflattenFromString(
             "com.google.android.gms/.auth.uiflows.minutemaid.MinuteMaidActivity");
-
-    private static final Boolean sDisableGmsProps = SystemProperties.getBoolean(
-            "persist.sys.pihooks.disable.gms_props", false);
-
-    private static final Boolean sDisableKeyAttestationBlock = SystemProperties.getBoolean(
-        "persist.sys.pihooks.disable.gms_key_attestation_block", false);
 
     private static final Map<String, String> sPixelNineProps = Map.of(
             "PRODUCT", "caiman",
@@ -290,10 +291,12 @@ public class PropImitationHooks {
         setPropValue(key, value, false);
     }
 
+    public static IPihManager getPihManager() {
+        return IPihManager.Stub.asInterface(ServiceManager.getService(PIH_SERVICE_NAME));
+    }
+
     private static void loadCertifiedProps() {
-        IPihManager pihManager = IPihManager.Stub.asInterface(
-                ServiceManager.getService(PIH_SERVICE_NAME));
-        
+        IPihManager pihManager = getPihManager();
         if (pihManager == null) {
             dlog("Failed to get pih manager service.");
             return;
@@ -415,6 +418,12 @@ public class PropImitationHooks {
     public static void onEngineGetCertificateChain() {
         if (sDisableKeyAttestationBlock) {
             dlog("Key attestation blocking is disabled by user");
+            return;
+        }
+
+        // If a keybox is found, don't block key attestation
+        if (KeyProviderManager.isKeyboxAvailable()) {
+            dlog("Key attestation blocking is disabled because a keybox is defined to spoof");
             return;
         }
 
