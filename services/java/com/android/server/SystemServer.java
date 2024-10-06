@@ -1762,6 +1762,10 @@ public final class SystemServer implements Dumpable {
             mSystemServiceManager.startService(Smart5gService.class);
             t.traceEnd();
 
+            t.traceBegin("StartPihManagerService");
+            mSystemServiceManager.startService(PihManagerService.class);
+            t.traceEnd();
+
             if (AppFunctionManagerConfiguration.isSupported(context)) {
                 t.traceBegin("StartAppFunctionManager");
                 mSystemServiceManager.startService(AppFunctionManagerService.class);
