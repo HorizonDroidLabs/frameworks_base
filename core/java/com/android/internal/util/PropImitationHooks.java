@@ -49,7 +49,7 @@ import org.json.JSONObject;
 public class PropImitationHooks {
 
     private static final String TAG = "PropImitationHooks";
-    private static final boolean DEBUG = false;
+    private static final boolean DEBUG = Log.isLoggable(TAG, Log.DEBUG);
     private static final String PIH_SERVICE_NAME = "pih_manager";
 
     private static final Boolean sDisableGmsProps = SystemProperties.getBoolean(
