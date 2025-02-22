@@ -6365,7 +6365,13 @@ public final class Settings {
         public static final String SCREEN_FLASH_NOTIFICATION_COLOR =
                 "screen_flash_notification_color_global";
 
-	/**
+        /**
+         * @hide
+         */
+        public static final String ONGOING_ACTION_CHIP = "ongoing_action_chip";
+
+      
+        /**
          * Color temperature of the display during the day
          * @hide
          */
