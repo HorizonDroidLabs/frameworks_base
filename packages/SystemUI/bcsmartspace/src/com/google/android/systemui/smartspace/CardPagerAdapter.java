@@ -70,8 +70,23 @@ public class CardPagerAdapter extends PagerAdapter {
         this.mCurrentTextColor = attrColor;
     }
 
-    public static int getBaseLegacyCardRes(int layout) {
-        return layout != 1 ? R.layout.smartspace_card : R.layout.smartspace_card_date;
+    public static int getBaseLegacyCardRes(int i4) {
+        if (i4 == -2 || i4 == -1) {
+            return R.layout.smartspace_card;
+        }
+        if (i4 != 1) {
+            if (i4 == 2 || i4 == 3 || i4 == 4 || i4 == 6 || i4 == 18 || i4 == 20 || i4 == 30 || i4 == 9 || i4 == 10) {
+                return R.layout.smartspace_card;
+            }
+            switch (i4) {
+                case 13:
+                case 14:
+                case 15:
+                default:
+                    return R.layout.smartspace_card;
+            }
+        }
+        return 0;
     }
 
     public static int getLegacySecondaryCardRes(int layout) {
