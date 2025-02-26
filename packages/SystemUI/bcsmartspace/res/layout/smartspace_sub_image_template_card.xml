@@ -6,7 +6,7 @@
         android:clipToPadding="false"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent">
-    <ImageView android:id="@id/image_view" android:background="@drawable/outline_rounded_secondary_card"
+    <ImageView android:id="@+id/image_view" android:background="@drawable/outline_rounded_secondary_card"
                android:layout_width="0.0dip" android:layout_height="fill_parent" android:scaleType="centerInside"
                android:clipToOutline="true" app:layout_constraintBottom_toBottomOf="parent"
                app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"/>

@@ -5,7 +5,7 @@
         android:layout_width="fill_parent"
         android:layout_height="@dimen/enhanced_smartspace_card_height"
         android:baselineAligned="false">
-    <androidx.constraintlayout.widget.ConstraintLayout android:id="@id/secondary_card_group" android:visibility="gone"
+    <androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/secondary_card_group" android:visibility="gone"
                                                        android:layout_width="wrap_content"
                                                        android:layout_height="fill_parent"
                                                        android:paddingEnd="@dimen/enhanced_smartspace_secondary_card_padding_end"
@@ -14,6 +14,6 @@
                                                        app:layout_constraintTop_toTopOf="parent"/>
     <include android:layout_width="0.0dip" android:layout_height="fill_parent"
              app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
-             app:layout_constraintStart_toEndOf="@id/secondary_card_group" app:layout_constraintTop_toTopOf="parent"
+             app:layout_constraintStart_toEndOf="@+id/secondary_card_group" app:layout_constraintTop_toTopOf="parent"
              layout="@layout/smartspace_title_subtitle_pane"/>
 </com.google.android.systemui.smartspace.uitemplate.BaseTemplateCard>
