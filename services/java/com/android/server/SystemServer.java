@@ -2783,9 +2783,13 @@ public final class SystemServer implements Dumpable {
                 t.traceEnd();
             }
 
+
             t.traceBegin("StartHealthService");
             mSystemServiceManager.startService(HealthInterfaceService.class);
             t.traceEnd();
+
+            mSystemServiceManager.startService(HideAppListService.class);
+
         }
 
         t.traceBegin("StartMediaProjectionManager");
