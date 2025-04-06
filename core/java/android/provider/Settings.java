@@ -12980,9 +12980,8 @@ public final class Settings {
          * Control which apps to hide from other user apps.
          * @hide
          */
-
         @Readable
-        public static final String HIDE_DEVELOPER_STATUS = "hide_developer_status";
+        public static final String HIDE_APPLIST = "hide_applist";
 
         /**
          * Our GameSpace can't write to device_config directly [GTS]

@@ -179,7 +179,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
-import com.android.internal.util.axion.HideAppListUtils;
+import com.android.internal.util.horizon.HideAppListUtils;
 
 /**
  * This class contains the implementation of the Computer functions.  It
